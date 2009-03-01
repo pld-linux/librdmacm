@@ -9,6 +9,7 @@ Source0:	http://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
 URL:		http://www.openfabrics.org/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
+BuildRequires:	libibverbs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
