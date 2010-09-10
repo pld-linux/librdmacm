@@ -7,6 +7,7 @@ License:	BSD or GPL v2
 Group:		Libraries
 Source0:	http://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
 # Source0-md5:	2281aa8bf47caf34819842f79e3f9759
+Source1:	%{name}.pc.in
 URL:		http://www.openfabrics.org/
 BuildRequires:	libibverbs-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,6 +57,13 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# check if not present already
+[ ! -f %{_pkgconfigdir}/rdmacm.pc ] || exit 1
+install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
+sed -e 's,@prefix@,%{_prefix},;
+	s,@libdir@,%{_libdir},;
+	s,@LIBVERSION@,%{version},' %{SOURCE1} >$RPM_BUILD_ROOT%{_pkgconfigdir}/rdmacm.pc
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -86,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/librdmacm.la
 %{_includedir}/infiniband/ib.h
 %{_includedir}/rdma
+%{_pkgconfigdir}/rdmacm.pc
 %{_mandir}/man3/rdma_*.3*
 %{_mandir}/man7/rdma_cm.7*
 
