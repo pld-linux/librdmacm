@@ -1,17 +1,18 @@
 Summary:	Userspace RDMA Connection Manager
 Summary(pl.UTF-8):	Zarządca połączeń RDMA w przestrzeni użytkowika
 Name:		librdmacm
-Version:	1.0.14.1
-Release:	2
+Version:	1.0.15
+Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
 Source0:	http://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
-# Source0-md5:	bc3cc06b808ab6096b5c0937f54a8dbd
+# Source0-md5:	0053fd9a7368f04e72287923eb58ea36
 Source1:	%{name}.pc.in
 URL:		http://www.openfabrics.org/
 BuildRequires:	libibverbs-devel
-BuildRequires:	gcc-c++
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%undefine	__cxx
 
 %description
 librdmacm provides a userspace RDMA Communication Management API.
@@ -77,6 +78,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mckey
 %attr(755,root,root) %{_bindir}/rdma_client
 %attr(755,root,root) %{_bindir}/rdma_server
+%attr(755,root,root) %{_bindir}/rdma_xclient
+%attr(755,root,root) %{_bindir}/rdma_xserver
 %attr(755,root,root) %{_bindir}/rping
 %attr(755,root,root) %{_bindir}/ucmatose
 %attr(755,root,root) %{_bindir}/udaddy
@@ -85,6 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/mckey.1*
 %{_mandir}/man1/rdma_client.1*
 %{_mandir}/man1/rdma_server.1*
+%{_mandir}/man1/rdma_xclient.1*
+%{_mandir}/man1/rdma_xserver.1*
 %{_mandir}/man1/rping.1*
 %{_mandir}/man1/ucmatose.1*
 %{_mandir}/man1/udaddy.1*
