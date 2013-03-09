@@ -1,15 +1,19 @@
 Summary:	Userspace RDMA Connection Manager
 Summary(pl.UTF-8):	Zarządca połączeń RDMA w przestrzeni użytkowika
 Name:		librdmacm
-Version:	1.0.16
+Version:	1.0.17
 Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
 Source0:	http://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
-# Source0-md5:	a0a94092b6a75a35f47f7d379c8cc8be
+# Source0-md5:	da6fad887e9c24cb01b74b75f8449cb1
 Source1:	%{name}.pc.in
+Patch0:		%{name}-link.patch
 URL:		http://www.openfabrics.org/
+BuildRequires:	autoconf >= 2.57
+BuildRequires:	automake
 BuildRequires:	libibverbs-devel
+BuildRequires:	libtool >= 1.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -48,8 +52,14 @@ Ten pakiet zawiera statyczną bibliotekę librdmacm.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules
 %{__make}
@@ -85,10 +95,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/rdma_server
 %attr(755,root,root) %{_bindir}/rdma_xclient
 %attr(755,root,root) %{_bindir}/rdma_xserver
+%attr(755,root,root) %{_bindir}/riostream
 %attr(755,root,root) %{_bindir}/rping
 %attr(755,root,root) %{_bindir}/rstream
 %attr(755,root,root) %{_bindir}/ucmatose
 %attr(755,root,root) %{_bindir}/udaddy
+%attr(755,root,root) %{_bindir}/udpong
 %attr(755,root,root) %{_libdir}/librdmacm.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/librdmacm.so.1
 %dir %{_libdir}/rsocket

@@ -1,0 +1,11 @@
+--- librdmacm-1.0.17/Makefile.am.orig	2013-03-06 02:31:33.000000000 +0100
++++ librdmacm-1.0.17/Makefile.am	2013-03-09 08:38:07.243770737 +0100
+@@ -24,7 +24,7 @@
+ 
+ src_librspreload_la_SOURCES = src/preload.c src/indexer.c
+ src_librspreload_la_LDFLAGS = -version-info 1 -export-dynamic
+-src_librspreload_la_LIBADD = $(top_builddir)/src/librdmacm.la
++src_librspreload_la_LIBADD = $(top_builddir)/src/librdmacm.la -ldl
+ 
+ bin_PROGRAMS = examples/ucmatose examples/rping examples/udaddy examples/mckey \
+ 	       examples/rdma_client examples/rdma_server examples/rdma_xclient \
