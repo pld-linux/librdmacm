@@ -1,19 +1,19 @@
 Summary:	Userspace RDMA Connection Manager
 Summary(pl.UTF-8):	Zarządca połączeń RDMA w przestrzeni użytkowika
 Name:		librdmacm
-Version:	1.0.17.1
+Version:	1.0.18
 Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
 Source0:	http://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
-# Source0-md5:	c41b18794b1b58065fed464a743e23b0
+# Source0-md5:	786b76ce5f1da97d2b0fd8d787a7add0
 Source1:	%{name}.pc.in
 Patch0:		%{name}-link.patch
 URL:		http://www.openfabrics.org/
-BuildRequires:	autoconf >= 2.57
+BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
 BuildRequires:	libibverbs-devel
-BuildRequires:	libtool >= 1.4
+BuildRequires:	libtool >= 2:2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -89,6 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING README
+%attr(755,root,root) %{_bindir}/cmtime
 %attr(755,root,root) %{_bindir}/mckey
 %attr(755,root,root) %{_bindir}/rcopy
 %attr(755,root,root) %{_bindir}/rdma_client
@@ -111,6 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/rdma_server.1*
 %{_mandir}/man1/rdma_xclient.1*
 %{_mandir}/man1/rdma_xserver.1*
+%{_mandir}/man1/riostream.1*
 %{_mandir}/man1/rping.1*
 %{_mandir}/man1/rstream.1*
 %{_mandir}/man1/ucmatose.1*
