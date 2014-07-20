@@ -1,12 +1,12 @@
 Summary:	Userspace RDMA Connection Manager
 Summary(pl.UTF-8):	Zarządca połączeń RDMA w przestrzeni użytkowika
 Name:		librdmacm
-Version:	1.0.18.1
+Version:	1.0.19
 Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
-Source0:	http://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
-# Source0-md5:	3fd25bdf6aab81507487140c321a999b
+Source0:	https://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
+# Source0-md5:	f34fbcc10116edef443e1c5fbcbc5767
 Source1:	%{name}.pc.in
 Patch0:		%{name}-link.patch
 URL:		http://www.openfabrics.org/
