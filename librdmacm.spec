@@ -1,23 +1,20 @@
 Summary:	Userspace RDMA Connection Manager
 Summary(pl.UTF-8):	Zarządca połączeń RDMA w przestrzeni użytkowika
 Name:		librdmacm
-Version:	1.0.19.1
-Release:	3
+Version:	1.0.21
+Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
 Source0:	https://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
-# Source0-md5:	0e2b7f629950e80453e8693a4c8b1654
+# Source0-md5:	6e9bda2f115549cde20eed29221ea0c2
 Source1:	%{name}.pc.in
 Patch0:		%{name}-link.patch
-# diff between plain librdmacm-1.0.19 and https://www.openfabrics.org/downloads/management/ssa/librdmacm-1.0.19.ssa1.tar.gz rebased to librdmacm-1.0.19.1
-Patch1:		%{name}-ssa.patch
 URL:		http://www.openfabrics.org/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
-BuildRequires:	libibverbs-devel
+BuildRequires:	libibverbs-devel >= 1.1
 BuildRequires:	libtool >= 2:2
-# temporary, until all SSA changes get merged into main release
-Provides:	librdmacm(ssa) = %{version}-%{release}
+Requires:	libibverbs >= 1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -34,7 +31,7 @@ Summary:	Header files for librdmacm library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki librdmacm
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libibverbs-devel
+Requires:	libibverbs-devel >= 1.1
 
 %description devel
 Header files for librdmacm library.
@@ -57,7 +54,6 @@ Ten pakiet zawiera statyczną bibliotekę librdmacm.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
