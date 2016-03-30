@@ -1,20 +1,20 @@
 Summary:	Userspace RDMA Connection Manager
 Summary(pl.UTF-8):	Zarządca połączeń RDMA w przestrzeni użytkowika
 Name:		librdmacm
-Version:	1.0.21
+Version:	1.1.0
 Release:	1
 License:	BSD or GPL v2
 Group:		Libraries
 Source0:	https://www.openfabrics.org/downloads/rdmacm/%{name}-%{version}.tar.gz
-# Source0-md5:	6e9bda2f115549cde20eed29221ea0c2
+# Source0-md5:	9459e523002978ef6e7b852e01d8b29e
 Source1:	%{name}.pc.in
 Patch0:		%{name}-link.patch
 URL:		http://www.openfabrics.org/
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
-BuildRequires:	libibverbs-devel >= 1.1
+BuildRequires:	libibverbs-devel >= 1.1.8
 BuildRequires:	libtool >= 2:2
-Requires:	libibverbs >= 1.1
+Requires:	libibverbs >= 1.1.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -31,7 +31,8 @@ Summary:	Header files for librdmacm library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki librdmacm
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libibverbs-devel >= 1.1
+Requires:	libibverbs-devel >= 1.1.8
+Requires:	linux-libc-headers >= 7:2.6.20
 
 %description devel
 Header files for librdmacm library.
@@ -124,7 +125,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/librdmacm.so
 %{_libdir}/librdmacm.la
 %{_includedir}/infiniband/ib.h
-%{_includedir}/rdma
+%{_includedir}/rdma/rdma_cma.h
+%{_includedir}/rdma/rdma_cma_abi.h
+%{_includedir}/rdma/rdma_verbs.h
+%{_includedir}/rdma/rsocket.h
 %{_pkgconfigdir}/rdmacm.pc
 %{_mandir}/man3/rdma_*.3*
 %{_mandir}/man7/rdma_cm.7*

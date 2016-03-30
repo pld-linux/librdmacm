@@ -6,6 +6,6 @@ includedir=${prefix}/include
 Name: rdmacm
 Version: @LIBVERSION@
 Description: rdmacm
-Requires:
+Requires: ibverbs >= 1.1.8
 Libs: -L${libdir} -lrdmacm
 Cflags: -I${includedir}
